@@ -12,12 +12,16 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Closure;
+use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-list';
+
+    protected static ?string $navigationGroup = 'Opportunities';
 
     public static function form(Form $form): Form
     {
@@ -25,7 +29,11 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(2048),
+                    ->maxLength(2048)
+                    ->reactive()
+                    ->afterStateUpdated(function(Closure $set, $state){
+                        $set('slug', str_replace(' ', '-', Str::slug($state)));
+                    }),
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
