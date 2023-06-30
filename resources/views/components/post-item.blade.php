@@ -1,7 +1,7 @@
 <article class="flex flex-col shadow my-4" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
     <!-- Article Image -->
     <a href="#" class="hover:opacity-75">
-        <img src="{{ url('storage/' . $post->thumbnail) }}" alt="Featured Image" style="object-fit: cover; width: 100%; height: 500px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <img src="{{ $post->getThumbnail()}}" alt="Featured Image" style="object-fit: cover; width: 100%; height: 500px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
         @foreach ($post->categories as $category)
