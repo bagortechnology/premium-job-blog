@@ -9,9 +9,6 @@
             <x-post-item :post="$post"></x-post-item>
         @endforeach
 
-        <?php
-        dd($posts)
-        ?>
         <!-- Pagination -->
         {{ $posts->onEachSide(1)->links() }}
 
