@@ -5,7 +5,6 @@
             <x-post-item :post="$post"></x-post-item>
         @endforeach
 
-
         <!-- Pagination -->
         {{ $posts->links() }}
 
