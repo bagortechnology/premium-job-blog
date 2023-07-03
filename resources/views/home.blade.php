@@ -10,7 +10,7 @@
         @endforeach
 
         <!-- Pagination -->
-        {{ $posts->onEachSide(1)->links() }}
+        {{$posts->onEachSide(1)->links()}}
 
     </section>
 </x-app-layout>
