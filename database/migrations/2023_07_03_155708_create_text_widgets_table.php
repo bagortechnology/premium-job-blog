@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('text_widgets', function (Blueprint $table) {
             $table->id();
+            $table->string('key')->unique();
             $table->string('image', 2048)->nullable();
             $table->string('title', 2048);
             $table->longText('content', 2048)->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }
