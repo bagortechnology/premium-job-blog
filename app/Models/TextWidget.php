@@ -20,7 +20,7 @@ class TextWidget extends Model
 
     public static function getTitle(string $key): string 
     {
-        Cache::get('text-widget-' . $key, function() use ($key){
+       $widget = Cache::get('text-widget-' . $key, function() use ($key){
                 return TextWidget::query()->where('key', '=', $key)->where('active', '=', 1)->first();
         });
         
@@ -33,10 +33,9 @@ class TextWidget extends Model
 
     public static function getContent(string $key): string
     {
-        $widget = TextWidget::query()
-            ->where('key', '=', $key)
-            ->where('active', '=', 1)
-            ->first();
+       $widget = Cache::get('text-widget-' . $key, function() use ($key) {
+            return TextWidget::query()->where('key', '=', $key)->where('active', '=', 1)->first();
+        });
         if($widget) {
             return $widget->content;
         }
