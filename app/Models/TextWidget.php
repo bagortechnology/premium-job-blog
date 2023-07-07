@@ -26,4 +26,17 @@ class TextWidget extends Model
 
         return '';
     }
+
+    public static function getContent(string $key): string
+    {
+        $widget = TextWidget::query()
+            ->where('key', '=', $key)
+            ->where('active', '=', 1)
+            ->first();
+        if($widget) {
+            return $widget->content;
+        }
+
+        return '';
+    }
 }
