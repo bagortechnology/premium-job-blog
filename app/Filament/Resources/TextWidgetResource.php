@@ -19,6 +19,8 @@ class TextWidgetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Content';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -26,15 +28,14 @@ class TextWidgetResource extends Resource
                 Forms\Components\TextInput::make('key')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('image')
-                    ->maxLength(2048),
+                Forms\Components\FileUpload::make('image'),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(2048),
-                Forms\Components\Textarea::make('content'),
+                Forms\Components\RichEditor::make('content'),
                 Forms\Components\Toggle::make('active')
                     ->required(),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -42,13 +43,9 @@ class TextWidgetResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('key'),
-                Tables\Columns\TextColumn::make('image'),
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('content'),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])

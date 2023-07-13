@@ -94,17 +94,7 @@
        {{ $slot }}
 
         <!-- Sidebar Section -->
-        <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
-
-            <div class="w-full bg-white shadow flex flex-col my-4 p-6">
-                <p class="text-xl font-semibold pb-5">About Us</p>
-                <h4 class="pb-2">Discover high-paying job opportunities in top-tier companies both locally and abroad.</h4>
-                <a href="#" class="w-full bg-red-800 text-white font-bold text-sm uppercase rounded hover:bg-red-700 flex items-center justify-center px-2 py-3 mt-4">
-                    Get to know us
-                </a>
-            </div>
-
-        </aside>
+        
 
     </div>
 
