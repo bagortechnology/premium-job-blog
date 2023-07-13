@@ -24,12 +24,13 @@ class AppLayout extends Component
     public function render(): View|Closure|string
     {
         $categories = Category::query()
-        ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
-        ->select('categories.id', 'categories.title', 'categories.slug', DB::raw('count(*) as total'))
-        ->groupBy('categories.id', 'categories.title', 'categories.slug')
-        ->orderByDesc('total')
-        ->limit(5)
-        ->get();
-        return view('layouts.app');
+            ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
+            ->select('categories.id', 'categories.title', 'categories.slug', DB::raw('count(*) as total'))
+            ->groupBy('categories.id', 'categories.title', 'categories.slug')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+
+        return view('layouts.app', compact('categories'));
     }
 }
